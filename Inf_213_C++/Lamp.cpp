@@ -1,6 +1,14 @@
 #include <iostream>
 #include "Lamp.h"
 
+void Lamp::init(std::string firm, int power, double price) {
+	if (firm == "") throw std::invalid_argument("====Ошибка иницализации производителя====\n\n");
+	if (power < 0) throw std::domain_error("====Ошибка иницализации мощности====\n\n");
+	if (price < 0) throw std::domain_error("====Ошибка иницализации цены====\n\n");
+	_firm = firm;
+	_power = power;
+	_price = price;
+}
 
 Lamp::Lamp(Lamp& lamp) {
 	if (this == &lamp) return;
@@ -36,14 +44,15 @@ Lamp* getLamp() {
 	while (true)
 	{
 		std::cout << "---Попытка создания объекта---" << std::endl;
+
+		Lamp* lamp;
+
+		std::string firm;
+		int power;
+		double price;
+
 		int e = 1;
 		try {
-			Lamp* lamp;
-
-			std::string firm;
-			int power;
-			double price;
-
 			std::cout << "Введите название фирмы: ";
 			std::cin >> firm;
 			std::cout << "Введите мощность: ";
