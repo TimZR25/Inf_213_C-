@@ -128,11 +128,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Catalog.h" />
+    <ClInclude Include="DataStorage.h" />
     <ClInclude Include="Lamp.h" />
     <ClInclude Include="Smartphone.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Catalog.cpp" />
+    <ClCompile Include="DataStorage.cpp" />
     <ClCompile Include="Lamp.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Smartphone.cpp" />

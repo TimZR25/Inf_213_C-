@@ -25,6 +25,12 @@
     <Filter Include="Файлы заголовков\PR_6">
       <UniqueIdentifier>{30b6e190-970c-4642-89a0-76675d129078}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Laba_3">
+      <UniqueIdentifier>{fee5fa4b-4bf3-4b12-bca4-82dc45140fd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Laba_3">
+      <UniqueIdentifier>{17882221-2ece-441e-ae31-87c19ca79736}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Catalog.h">
@@ -35,6 +41,9 @@
     </ClInclude>
     <ClInclude Include="Lamp.h">
       <Filter>Файлы заголовков\PR_6</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStorage.h">
+      <Filter>Файлы заголовков\Laba_3</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="Lamp.cpp">
       <Filter>Исходные файлы\PR_6</Filter>
+    </ClCompile>
+    <ClCompile Include="DataStorage.cpp">
+      <Filter>Исходные файлы\Laba_3</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 ﻿
-#define PR_7
+#define Laba_3
 
 #ifdef PR_6
 #include <iostream>
@@ -74,3 +74,13 @@ int main(int argc, char* argv[]) {
 }
 #endif // PR_7
 
+#ifdef Laba_3
+#include <iostream>
+#include "DataStorage.h"
+void main()
+{
+	setlocale(LC_ALL, "Rus");
+	DataStorage ds("a", "b", 3, "c", 50, 40, 25, "d");
+	ds.print();
+}
+#endif // Laba_3
