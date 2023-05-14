@@ -2,10 +2,15 @@
 
 void Catalog::addSmartphone(std::string model, std::string manufacturer,
     std::string color, std::string display, std::string ram,
-    std::string storage, std::string cpu, std::string os, double price) {
+    std::string storage, std::string cpu, std::string os, int year, double price) {
     _smartphones.push_back(Smartphone{ model, manufacturer,
       color, display, ram,
-      storage, cpu, os , price });
+      storage, cpu, os , year, price });
+}
+
+void Catalog::addSmartphone(Smartphone& smartphone)
+{
+    _smartphones.push_back(smartphone);
 }
 
 Smartphone Catalog::getSmartphone(string model) {
@@ -41,7 +46,31 @@ Smartphone Catalog::search(const Smartphone& searchSmartphone) {
         std::string os = searchSmartphone.getOS();
         if (!os.empty() && os != s.getOS()) continue;
 
+        int year = searchSmartphone.getYear();
+        if (year != 0() && year != s.getYear()) continue;
+
+        double price = searchSmartphone.getPrice();
+        if (price != 0() && price != s.getPrice()) continue;
+
         return s;
     }  
+    return Smartphone();
+}
+
+Smartphone Catalog::search(std::string model, int year, double price)
+{
+    for (Smartphone s : _smartphones) {
+
+        std::string _model = model;
+        if (!_model.empty() && _model != s.getModel()) continue;
+
+        int _year = year;
+        if (_year != 0() && _year != s.getYear()) continue;
+
+        double _price = price;
+        if (_price != 0() && _price != s.getPrice()) continue;
+
+        return s;
+    }
     return Smartphone();
 }

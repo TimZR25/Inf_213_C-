@@ -49,26 +49,25 @@ int main() {
 Catalog InitializeCatalog() {
 	Catalog catalog;
 	catalog.addSmartphone("iPhone 12 Pro", "Apple", "White",
-		"6", "3", "64", "Apple", "iOS", 100);
+		"6", "3", "64", "Apple", "iOS", 2017, 67000);
+
+	Smartphone smartphone = Smartphone{ "iPhone 12 Pro", "Apple", "White",
+		"6", "3", "64", "Apple", "iOS", 2016, 55000};
+	catalog.addSmartphone(smartphone);
+
 	return catalog;
 }
 
 int main(int argc, char* argv[]) {
 	Catalog catalog = InitializeCatalog();
 	Smartphone whatBuyerLikes{ "iPhone 12 Pro", "Apple", "White",
-							 "" , "", "", "", "iOS", 100 };
-	Smartphone smartphone = catalog.search(whatBuyerLikes);
+							 "" , "", "", "", "iOS", 2016, 0 };
+
+	Smartphone smartphone = catalog.search("iPhone 12 Pro", 2016, 0);
+
 	if (smartphone.getModel() != "") {
 		std::cout << "You might like this: ";
-		std::cout << smartphone.getManufacturer() << " ";
-		std::cout << smartphone.getModel() << std::endl;
-		std::cout << "Color: " << smartphone.getColor() << std::endl;
-		std::cout << "Display: " << smartphone.getDisplay() << std::endl;
-		std::cout << "OS: " << smartphone.getOS() << std::endl;
-		std::cout << smartphone.getRAM() << "Gb RAM, " << smartphone.getStorage()
-			<< " GB storage" << std::endl;
-		std::cout << "CPU: " << smartphone.getCPU() << std::endl;
-		std::cout << "Price: " << smartphone.getPrice() << std::endl;
+		smartphone.print();
 	}
 	else cout << "Sorry, we have nothing for you.";
 	return 0;

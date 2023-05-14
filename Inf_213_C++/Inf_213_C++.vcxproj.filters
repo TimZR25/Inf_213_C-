@@ -19,22 +19,25 @@
     <Filter Include="Файлы заголовков\PR_7">
       <UniqueIdentifier>{2cd00ec0-1911-4790-8f0d-9d7726a21903}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\PR_6">
+      <UniqueIdentifier>{14f02912-1529-4dab-a0ef-ce95890e60f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\PR_6">
+      <UniqueIdentifier>{30b6e190-970c-4642-89a0-76675d129078}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lamp.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Catalog.h">
       <Filter>Файлы заголовков\PR_7</Filter>
     </ClInclude>
     <ClInclude Include="Smartphone.h">
       <Filter>Файлы заголовков\PR_7</Filter>
     </ClInclude>
+    <ClInclude Include="Lamp.h">
+      <Filter>Файлы заголовков\PR_6</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Lamp.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -43,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="Catalog.cpp">
       <Filter>Исходные файлы\PR_7</Filter>
+    </ClCompile>
+    <ClCompile Include="Lamp.cpp">
+      <Filter>Исходные файлы\PR_6</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
