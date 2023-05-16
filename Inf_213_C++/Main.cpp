@@ -1,5 +1,4 @@
-﻿
-#define Laba_3
+﻿#define PR_8
 
 #ifdef PR_6
 #include <iostream>
@@ -69,7 +68,41 @@ int main(int argc, char* argv[]) {
 		std::cout << "You might like this: ";
 		smartphone.print();
 	}
-	else cout << "Sorry, we have nothing for you.";
+	else std::cout << "Sorry, we have nothing for you.";
+	return 0;
+}
+#endif // PR_7
+
+#ifdef PR_8
+#include"Smartphone.h"
+#include"Catalog.h"
+#include<iostream>
+
+
+Catalog InitializeCatalog() {
+	Catalog catalog;
+	catalog.addSmartphone("iPhone 12 Pro", "Apple", "White",
+		"6", "3", "64", "Apple", "iOS", 2017, 67000);
+
+	Smartphone smartphone = Smartphone{ "iPhone 12 Pro", "Apple", "White",
+		"6", "3", "64", "Apple", "iOS", 2016, 55000 };
+	catalog.addSmartphone(smartphone);
+
+	return catalog;
+}
+
+int main(int argc, char* argv[]) {
+	Catalog catalog = InitializeCatalog();
+	Smartphone whatBuyerLikes{ "iPhone 12 Pro", "Apple", "White",
+							 "" , "", "", "", "iOS", 2016, 0 };
+
+	Smartphone smartphone = catalog.search("iPhone 12 Pro", 2016, 0);
+
+	if (smartphone.getModel() != "") {
+		std::cout << "You might like this: ";
+		smartphone.print();
+	}
+	else std::cout << "Sorry, we have nothing for you.";
 	return 0;
 }
 #endif // PR_7

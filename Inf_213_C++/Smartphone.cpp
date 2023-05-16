@@ -1,3 +1,6 @@
+#define PR_8
+
+#ifdef PR_7
 #include "Smartphone.h"
 #include <iostream>
 
@@ -130,3 +133,35 @@ void Smartphone::print() const
 	std::cout << "Year of Production: " << getYear() << std::endl;
 	std::cout << "Price: " << getPrice() << std::endl << std::endl;
 }
+#endif // PR_7
+
+#ifdef PR_8
+#include "Smartphone.h"
+Smartphone::Smartphone() {
+	_model = "";  _price = 0;
+	_manufacturer = Manufacturer::UNDEFINED;
+	_color = Color::UNDEFINED;
+	_displaySize = 0;  _ram = 0;
+	_storage = 0;
+	_cpu = CPU::UNDEFINED;  _os = OS::UNDEFINED;
+}
+Smartphone::Smartphone(string model, double price, Manufacturer
+	manufacturer,
+	Color color, float displaySize, int ram,
+	int storage, CPU cpu, OS os) {
+	_model = model;  _price = price;
+	_manufacturer = manufacturer;
+	_color = color;
+	_displaySize = displaySize;  _ram = ram;
+	_storage = storage;
+	_cpu = cpu;  _os = os;
+}
+string Smartphone::getModel() const {
+	return _model;
+}
+// ѕропущены методы получени€ значений характеристик,
+// которые реализуютс€ подобным образом 
+void Smartphone::setPrice(double price) {
+	_price = price;
+}
+#endif // PR_8

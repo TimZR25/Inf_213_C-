@@ -1,7 +1,11 @@
 #pragma once
-#include<string>
+
+#ifdef PR_7
 #include"Smartphone.h"
+#include<string>
 #include <list>
+
+
 
 class Catalog {
 private:
@@ -13,7 +17,31 @@ public:
 
     void addSmartphone(Smartphone& smartphone);
 
-    Smartphone getSmartphone(string model);
+    Smartphone getSmartphone(std::string model);
     Smartphone search(const Smartphone& searchSmartphone);
     Smartphone search(std::string model, int year, double price);
 };
+#endif // PR_7
+
+#ifdef PR_8
+#include"Smartphone.h"
+#include<string>
+#include <list>
+
+
+
+class Catalog {
+private:
+    std::list<Smartphone> _smartphones;
+public:
+    void addSmartphone(std::string model, std::string manufacturer,
+        std::string color, std::string display, std::string ram,
+        std::string storage, std::string cpu, std::string os, int year, double price);
+
+    void addSmartphone(Smartphone& smartphone);
+
+    Smartphone getSmartphone(std::string model);
+    Smartphone search(const Smartphone& searchSmartphone);
+    Smartphone search(std::string model, int year, double price);
+};
+#endif // PR_8
