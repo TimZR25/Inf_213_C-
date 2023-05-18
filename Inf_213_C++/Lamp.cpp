@@ -2,9 +2,9 @@
 #include "Lamp.h"
 
 void Lamp::init(std::string firm, int power, double price) {
-	if (firm == "") throw std::invalid_argument("====Ошибка иницализации производителя====\n\n");
-	if (power < 0) throw std::domain_error("====Ошибка иницализации мощности====\n\n");
-	if (price < 0) throw std::domain_error("====Ошибка иницализации цены====\n\n");
+	if (firm == "") throw std::invalid_argument("====Ошибка инициализации производителя====\n\n");
+	if (power < 0) throw std::domain_error("====Ошибка инициализации мощности====\n\n");
+	if (price < 0) throw std::domain_error("====Ошибка инициализации цены====\n\n");
 	_firm = firm;
 	_power = power;
 	_price = price;

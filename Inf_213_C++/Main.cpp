@@ -113,7 +113,14 @@ int main(int argc, char* argv[]) {
 void main()
 {
 	setlocale(LC_ALL, "Rus");
-	DataStorage ds("a", "b", 3, "c", 50, 40, 25, "d");
+	DataStorage ds{Manufacturer::Toshiba, Model::Andre, 18052023, Type::SSD, 1024, 3, 512, TypePartitionTable::MBR};
+	DataStorage ds2 = ds;
+	ds2.setPartitions(1, 128);
+	ds.createNewTable(TypePartitionTable::GPT);
+	ds.setPartitions(2, 256);
 	ds.print();
+	ds2.print();
+
+	std::cout << "Осталось места на диске: " << ds.getRemainingVolume() << " GB";
 }
 #endif // Laba_3
