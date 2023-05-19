@@ -1,13 +1,15 @@
 #include "DataStorage.h"
 
 
-void DataStorage::init(Manufacturer manufacturer, Model model, int serialNumber, Type type, double volume,
+void DataStorage::init(std::string manufacturer, std::string model, int serialNumber, Type type, double volume,
 	int amountPartitions, double volumePartitions, TypePartitionTable typePartitionTable)
 {
-	if (serialNumber <= 0) throw std::domain_error("====Ошибка инициализации серийного номера====\n\n");
-	if (volume <= 0) throw std::domain_error("====Ошибка инициализации объёма====\n\n");
-	if (amountPartitions < 0) throw std::domain_error("====Ошибка инициализации количества разделов====\n\n");
-	if (volumePartitions < 0) throw std::domain_error("====Ошибка инициализации  объёма разделов====\n\n");
+	if (manufacturer.empty()) throw std::invalid_argument("====Ошибка инициализации производителя====\n\n");
+	if (model.empty()) throw std::invalid_argument("====Ошибка инициализации модели====\n\n");
+	if (serialNumber <= 0 || serialNumber > 1000000) throw std::domain_error("====Ошибка инициализации серийного номера====\n\n");
+	if (volume <= 0 ||  volume > 100000) throw std::domain_error("====Ошибка инициализации объёма====\n\n");
+	if (amountPartitions < 0 || amountPartitions > 20) throw std::domain_error("====Ошибка инициализации количества разделов====\n\n");
+	if (volumePartitions < 0 || volumePartitions > 100000) throw std::domain_error("====Ошибка инициализации  объёма разделов====\n\n");
 	if ((amountPartitions == 0 && volumePartitions > 0) || (amountPartitions > 0 && volumePartitions == 0)) 
 		throw std::domain_error("====Ошибка инициализации объёма разделов и количества разделов====\n\n");
 	if (volumePartitions > volume) throw std::domain_error("====Ошибка инициализации объёма разделов превышающий объём====\n\n");
@@ -23,18 +25,11 @@ void DataStorage::init(Manufacturer manufacturer, Model model, int serialNumber,
 	_typePartitionTable = typePartitionTable;
 }
 
-DataStorage::DataStorage(Manufacturer manufacturer, Model model, int serialNumber, Type type, double volume,
+DataStorage::DataStorage(std::string manufacturer, std::string model, int serialNumber, Type type, double volume,
 	int amountPartitions, double volumePartitions, TypePartitionTable typePartitionTable)
 {
-	try
-	{
 		init(manufacturer, model, serialNumber, type, volume,
 			amountPartitions, volumePartitions, typePartitionTable);
-	}
-	catch (const std::exception& error)
-	{
-		std::cout << error.what();
-	}
 }
 
 DataStorage::DataStorage(DataStorage& dataStorage)
@@ -49,46 +44,6 @@ DataStorage::DataStorage(DataStorage& dataStorage)
 	_amountPartitions = dataStorage._amountPartitions;
 	_volumePartitions = dataStorage._volumePartitions;
 	_typePartitionTable = dataStorage._typePartitionTable;
-}
-
-std::string ToString(Manufacturer manufacturer)
-{
-	switch (manufacturer)
-	{
-	case Manufacturer::WD: return "WD";
-		break;
-	case Manufacturer::Seagate: return "Seagate";
-		break;
-	case Manufacturer::Toshiba: return "Toshiba";
-		break;
-	case Manufacturer::ADATA: return "ADATA";
-		break;
-	case Manufacturer::UNDEFINED: return "UNDEFINED";
-		break;
-	default:
-		return "";
-		break;
-	}
-}
-
-std::string ToString(Model model)
-{
-	switch (model)
-	{
-	case Model::Andre: return "Andre";
-		break;
-	case Model::Halen: return "Halen";
-		break;
-	case Model::Blin: return "Blin";
-		break;
-	case Model::Zara: return "Zara";
-		break;
-	case Model::UNDEFINED: return "UNDEFINED";
-		break;
-	default:
-		return "";
-		break;
-	}
 }
 
 std::string ToString(Type type)
@@ -125,14 +80,14 @@ std::string ToString(TypePartitionTable typePartitionTable)
 
 void DataStorage::print()
 {
-	if (ToString(_manufacturer) == "")
+	if (_manufacturer == "")
 	{
 		std::cout << "====Не удалось вывести данные! Объект пуст!====" << std::endl;
 		return;
 	}
 
-	std::cout << "Производитель: " << ToString(_manufacturer) << std::endl;
-	std::cout << "Модель: " << ToString(_model) << std::endl;
+	std::cout << "Производитель: " << _manufacturer << std::endl;
+	std::cout << "Модель: " << _model << std::endl;
 	std::cout << "Серийный номер: " << _serialNumber << std::endl;
 	std::cout << "Тип: " << ToString(_type) << std::endl;
 	std::cout << "Объём: " << _volume << " GB" << std::endl;
@@ -141,12 +96,12 @@ void DataStorage::print()
 	std::cout << "Тип таблицы разделов: " << ToString(_typePartitionTable) << std::endl << std::endl;
 }
 
-Manufacturer DataStorage::getManufacturer()
+std::string DataStorage::getManufacturer()
 {
 	return _manufacturer;
 }
 
-Model DataStorage::getModel()
+std::string DataStorage::getModel()
 {
 	return _model;
 }
@@ -186,20 +141,35 @@ double DataStorage::getRemainingVolume()
 	return _volume - _volumePartitions;
 }
 
-void DataStorage::setPartitions(int amount, double volume)
+void DataStorage::setPartitions(int amountPartitions, double volumePartitions)
 {
-	if (amount < 0 || volume < 0) return;
-	if (volume > _volume) 
+	if (_typePartitionTable == TypePartitionTable::UNDEFINED)
+	{
+		std::cout << "===Таблица разделов не определенна===\n" << std::endl;
+		return;
+	}
+
+	if (amountPartitions < 0 || volumePartitions < 0)
+	{
+		std::cout << "===Отрицательные значения количества и объёма===\n" << std::endl;
+		return;
+	}
+
+	if ((amountPartitions == 0 && volumePartitions != 0) || (amountPartitions != 0 && volumePartitions == 0))
+	{
+		std::cout << "===Количество и суммарный объём разделов могут быть равны 0 только одновременно===\n" << std::endl;
+		return;
+	}
+
+	if (volumePartitions > _volume) 
 	{
 		std::cout << "===Нельзя добавить раздел превыщающий объём диска! Изменения не приняты===\n" << std::endl;
 		return;
 	}
 
-	if ((amount == 0 && volume == 0) || (amount != 0 && volume != 0))
-	{
-		_amountPartitions = amount;
-		_volumePartitions = volume;
-	}
+
+		_amountPartitions = amountPartitions;
+		_volumePartitions = volumePartitions;
 }
 
 void DataStorage::createNewTable(TypePartitionTable type)

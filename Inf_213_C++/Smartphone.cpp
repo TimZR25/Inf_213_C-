@@ -1,4 +1,4 @@
-#define PR_8
+#define PR
 
 #ifdef PR_7
 #include "Smartphone.h"

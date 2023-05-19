@@ -1,4 +1,4 @@
-﻿#define PR_8
+﻿#define Laba_3
 
 #ifdef PR_6
 #include <iostream>
@@ -113,14 +113,35 @@ int main(int argc, char* argv[]) {
 void main()
 {
 	setlocale(LC_ALL, "Rus");
-	DataStorage ds{Manufacturer::Toshiba, Model::Andre, 18052023, Type::SSD, 1024, 3, 512, TypePartitionTable::MBR};
-	DataStorage ds2 = ds;
+
+	DataStorage* ds{};
+	try
+	{
+		ds = new DataStorage{ "Toshiba", "", 421325, Type::SSD, 1024, 3, 512, TypePartitionTable::MBR };
+	}
+	catch (const std::exception& error)
+	{
+		std::cout << error.what();
+	}
+	
+	try
+	{
+		ds = new DataStorage{ "Toshiba", "Andre", 421325, Type::SSD, 1024, 3, 512, TypePartitionTable::GPT };
+	}
+	catch (const std::exception& error)
+	{
+		std::cout << error.what();
+	}
+
+	DataStorage ds2{ *ds };
 	ds2.setPartitions(1, 128);
-	ds.createNewTable(TypePartitionTable::GPT);
-	ds.setPartitions(2, 256);
-	ds.print();
+	(*ds).createNewTable(TypePartitionTable::GPT);
+	(*ds).setPartitions(2, 256);
+	(*ds).print();
 	ds2.print();
 
-	std::cout << "Осталось места на диске: " << ds.getRemainingVolume() << " GB";
+	std::cout << "Осталось места на диске: " << (*ds).getRemainingVolume() << " GB";
+
+	delete ds;
 }
 #endif // Laba_3
