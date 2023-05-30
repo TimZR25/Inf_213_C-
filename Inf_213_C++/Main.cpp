@@ -1,4 +1,4 @@
-﻿#define Laba_3
+﻿#define PR_7
 
 #ifdef PR_6
 #include <iostream>
@@ -43,32 +43,36 @@ int main() {
 #include"Smartphone.h"
 #include"Catalog.h"
 #include<iostream>
-
-
+using namespace std;
 Catalog InitializeCatalog() {
 	Catalog catalog;
-	catalog.addSmartphone("iPhone 12 Pro", "Apple", "White",
-		"6", "3", "64", "Apple", "iOS", 2017, 67000);
 
-	Smartphone smartphone = Smartphone{ "iPhone 12 Pro", "Apple", "White",
-		"6", "3", "64", "Apple", "iOS", 2016, 55000};
-	catalog.addSmartphone(smartphone);
+	catalog.addSmartphone("iPhone 12 Pro", 100, Manufacturer::APPLE,
+		Color::WHITE, 6, 3, 64, CPU::APPLE, OS::IOS);
+
+	catalog.addSmartphone("iPhone 12 Pro", 102, Manufacturer::APPLE,
+		Color::WHITE, 6, 3, 128, CPU::APPLE, OS::IOS);
+
+	catalog.addSmartphone("iPhone 12 Pro", 98, Manufacturer::APPLE,
+		Color::BLUE, 6, 3, 64, CPU::APPLE, OS::IOS);
 
 	return catalog;
 }
-
 int main(int argc, char* argv[]) {
 	Catalog catalog = InitializeCatalog();
-	Smartphone whatBuyerLikes{ "iPhone 12 Pro", "Apple", "White",
-							 "" , "", "", "", "iOS", 2016, 0 };
 
-	Smartphone smartphone = catalog.search("iPhone 12 Pro", 2016, 0);
+	Smartphone whatBuyerLikes{ "iphone 12 pro", 0, Manufacturer::APPLE,
+	Color::WHITE, 0 , 0, 0, CPU::UNDEFINED, OS::UNDEFINED };
 
-	if (smartphone.getModel() != "") {
-		std::cout << "You might like this: ";
-		smartphone.print();
+	vector<Smartphone> results = catalog.search(whatBuyerLikes);
+
+	if (!results.empty()) {
+		cout << "You might like this:" << endl;
+		for (Smartphone s : results) {
+			s.print();
+		}
 	}
-	else std::cout << "Sorry, we have nothing for you.";
+	else cout << "Sorry, we have nothing for you.";
 	return 0;
 }
 #endif // PR_7

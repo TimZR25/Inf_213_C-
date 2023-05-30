@@ -3,29 +3,47 @@
 #ifdef PR_7
 #include <string>
 
+enum class Manufacturer {
+    APPLE, SAMSUNG, XIAOMI, HTC, LG, UNDEFINED
+};
+enum class Color {
+    WHITE, GRAY, BLACK, BLUE, RED, GOLD, GREEN, UNDEFINED
+};
+enum class OS {
+    ANDROID, IOS, FIREFOX, UNDEFINED
+};
+enum class CPU {
+    SNAPDRAGON, APPLE, SAMSUNG, UNDEFINED
+};
+
 class Smartphone {
 private:
-    std::string _model, _manufacturer, _color, _display, _ram, _storage, _cpu, _os;
-    int _year;
-    double _price;
+    std::string _model;  Manufacturer _manufacturer;  Color _color;
+    float _displaySize;  int _ram, _storage;
+    CPU _cpu;  OS _os;  double _price;
 public:
     Smartphone();
 
-    Smartphone(std::string model, std::string manufacturer,
-        std::string color, std::string display, std::string ram,
-        std::string storage, std::string cpu, std::string os, int year, double price);
+    Smartphone(std::string model, double price, Manufacturer manufacturer,
+        Color color, float displaySize, int ram,
+        int storage, CPU cpu, OS os);
 
-    std::string getModel() const;  std::string getManufacturer() const;
-    std::string getColor() const;  std::string getDisplay() const;
-    std::string getRAM() const;    std::string getStorage() const;
-    std::string getCPU() const;    std::string getOS() const;
-    int getYear() const;    double getPrice() const;
+    std::string getModel() const;  Manufacturer getManufacturer() const;
+    Color getColor() const;        float getDisplaySize() const;
+    int getRAM() const;            int getStorage() const;
+    CPU getCPU() const;            OS getOS() const;
+    double getPrice() const;
     
-    void setModel(std::string model);   void setManufacturer(std::string manufacturer);
-    void setColor(std::string color);   void setDisplay(std::string display);
-    void setRAM(std::string ram);       void setStorage(std::string storage);
-    void setCPU(std::string cpu);       void setOS(std::string os);
-    void setYear(int year);       void setPrice(double price);
+    void setModel(std::string model);   void setManufacturer(Manufacturer manufacturer);
+    void setColor(Color color);   void setDisplaySize(float displaySize);
+    void setRAM(int ram);       void setStorage(int storage);
+    void setCPU(CPU cpu);       void setOS(OS os);
+    void setPrice(double price);
+
+    friend std::string toString(Manufacturer manufacturer);
+    friend std::string toString(Color color);
+    friend std::string toString(CPU cpu);
+    friend std::string toString(OS os);
 
     void print() const;
 };
