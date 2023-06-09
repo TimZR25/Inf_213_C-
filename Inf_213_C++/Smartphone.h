@@ -33,6 +33,7 @@ public:
 #ifdef PR_8
 #pragma once
 #include <string>
+#include "Price.h"
 using namespace std;
 enum class Manufacturer {
     APPLE, SAMSUNG, XIAOMI, HTC, LG, UNDEFINED
@@ -50,10 +51,10 @@ class Smartphone {
 private:
     string _model;  Manufacturer _manufacturer;  Color _color;
     float _displaySize;  int _ram, _storage;
-    CPU _cpu;  OS _os;  double _price;
+    CPU _cpu;  OS _os;  Price _price;
 public:
     Smartphone();
-    Smartphone(string model, double price, Manufacturer manufacturer,
+    Smartphone(string model, Price price, Manufacturer manufacturer,
         Color color, float displaySize, int ram,
         int storage, CPU cpu, OS os);
     string getModel() const;
@@ -64,8 +65,8 @@ public:
     int getStorage() const;
     CPU getCPU() const;
     OS getOS() const;
-    double getPrice() const;
-    void setPrice(double price);
+    Price getPrice() const;
+    void setPrice(Price price);
 
     void print() const;
 };

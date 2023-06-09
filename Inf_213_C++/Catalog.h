@@ -30,7 +30,7 @@ class Catalog {
 private:
     vector<Smartphone> smartphones;
 public:
-    void addSmartphone(string model, double price, Manufacturer manufacturer,
+    void addSmartphone(string model, Price price, Manufacturer manufacturer,
         Color color, float displaySize, int ram,
         int storage, CPU cpu, OS os);
     Smartphone getSmartphone(string model);

@@ -74,6 +74,7 @@ int main(int argc, char* argv[]) {
 #endif // PR_7
 
 #ifdef PR_8
+#include <Windows.h>
 #include"Smartphone.h"
 #include"Catalog.h"
 #include<iostream>
@@ -81,21 +82,25 @@ using namespace std;
 Catalog InitializeCatalog() {
 	Catalog catalog;
 
-	catalog.addSmartphone("iPhone 12 Pro", 100, Manufacturer::APPLE,
+	catalog.addSmartphone("iPhone 12 Pro", Price(Valuta::DOLLAR, 25), Manufacturer::APPLE,
 		Color::WHITE, 6, 3, 64, CPU::APPLE, OS::IOS);
 
-	catalog.addSmartphone("iPhone 12 Pro", 102, Manufacturer::APPLE,
-		Color::WHITE, 6, 3, 128, CPU::APPLE, OS::IOS);
+	catalog.addSmartphone("iPhone 12 Pro", Price(Valuta::TENGE, 25), Manufacturer::APPLE,
+		Color::BLACK, 6, 3, 128, CPU::APPLE, OS::IOS);
 
-	catalog.addSmartphone("iPhone 12 Pro", 98, Manufacturer::APPLE,
-		Color::BLUE, 6, 3, 64, CPU::APPLE, OS::IOS);
+	catalog.addSmartphone("iPhone 12 Pro", Price(Valuta::RUBLE, 1000), Manufacturer::APPLE,
+		Color::WHITE, 6, 3, 64, CPU::APPLE, OS::IOS);
 
 	return catalog;
 }
 int main(int argc, char* argv[]) {
+
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
 	Catalog catalog = InitializeCatalog();
 
-	Smartphone whatBuyerLikes{ "iphone 12 pro", 0, Manufacturer::APPLE,
+	Smartphone whatBuyerLikes{ "iphone 12 pro", Price(Valuta::RUBLE, 1000), Manufacturer::APPLE,
 	Color::WHITE, 0 , 0, 0, CPU::UNDEFINED, OS::UNDEFINED };
 
 	vector<Smartphone> results = catalog.search(whatBuyerLikes);

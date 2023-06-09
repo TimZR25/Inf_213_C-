@@ -144,10 +144,10 @@ Smartphone::Smartphone() {
 	_color = Color::UNDEFINED; _displaySize = 0;  
 	_ram = 0; _storage = 0;  
 	_cpu = CPU::UNDEFINED; _os = OS::UNDEFINED;
-	_price = 0;
+	_price = Price();
 }
 
-Smartphone::Smartphone(std::string model, double price, Manufacturer manufacturer,
+Smartphone::Smartphone(std::string model, Price price, Manufacturer manufacturer,
 	Color color, float displaySize, int ram,
 	int storage, CPU cpu, OS os) {
 	_model = model;    _manufacturer = manufacturer;
@@ -196,12 +196,12 @@ OS Smartphone::getOS() const
 	return _os;
 }
 
-double Smartphone::getPrice() const
+Price Smartphone::getPrice() const
 {
 	return _price;
 }
 
-void Smartphone::setPrice(double price) {
+void Smartphone::setPrice(Price price) {
 	_price = price;
 }
 
@@ -295,6 +295,7 @@ void Smartphone::print() const
 	std::cout << getRAM() << "Gb RAM, " << getStorage()
 		<< " GB storage" << std::endl;
 	std::cout << "CPU: " << toString(getCPU()) << std::endl;
-	std::cout << "Price: " << getPrice() << std::endl << std::endl;
+	Price p = getPrice();
+	std::cout << "Price: " << p.getValue(p.getValuta()) << " " << p.getSymbol() << std::endl << std::endl;
 }
 #endif // PR_8

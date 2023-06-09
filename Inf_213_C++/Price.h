@@ -2,15 +2,19 @@
 #include <string>
 typedef enum class Valuta
 {
-	RUBLE, DOLLAR, TENGE
+	RUBLE, DOLLAR, TENGE, UNDEFINED
 }Valuta;
 
 class Price
 {
 private:
-	double _price;
+	Valuta _valuta;
+	double _value;
 public:
-	void setPrice(double price);
-	double getPrice(Valuta v) const;
+	void setPrice(double value, Valuta v);
+	double getValue(Valuta v) const;
+	Price(Valuta valuta = Valuta::UNDEFINED, double value = 0);
+	Valuta getValuta();
+	std::string getSymbol();
 };
 

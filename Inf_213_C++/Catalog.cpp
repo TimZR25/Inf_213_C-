@@ -82,7 +82,7 @@ Smartphone Catalog::search(std::string model, int year, double price)
 #ifdef PR_8
 #include "Catalog.h"
 #include <algorithm>
-void Catalog::addSmartphone(string model, double price, Manufacturer
+void Catalog::addSmartphone(string model, Price price, Manufacturer
     manufacturer,
     Color color, float displaySize, int ram,
     int storage, CPU cpu, OS os) {
@@ -132,6 +132,10 @@ vector<Smartphone> Catalog::search(const Smartphone& searchSmartphone) {
 
         OS os = searchSmartphone.getOS();
         if (os != OS::UNDEFINED && os != s.getOS()) continue;
+
+        Price p1 = searchSmartphone.getPrice();
+        Price p2 = s.getPrice();
+        if (p1.getValue(p1.getValuta()) > 0 && p1.getValue(p1.getValuta()) != p2.getValue(p2.getValuta())) continue;
 
         results.push_back(s);
 
