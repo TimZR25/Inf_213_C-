@@ -1,28 +1,8 @@
-#pragma once
-
 #ifdef PR_7
+#pragma once
 #include<string>
-#include<vector>
 #include"Smartphone.h"
-using namespace std;
-class Catalog {
-private:
-    vector<Smartphone> _smartphones;
-public:
-    void addSmartphone(string model, double price, Manufacturer manufacturer,
-        Color color, float displaySize, int ram,
-        int storage, CPU cpu, OS os);
-    Smartphone getSmartphone(string model);
-    vector<Smartphone> search(const Smartphone& searchSmartphone);
-};
-#endif // PR_7
-
-#ifdef PR_8
-#include"Smartphone.h"
-#include<string>
 #include <list>
-
-
 
 class Catalog {
 private:
@@ -34,8 +14,26 @@ public:
 
     void addSmartphone(Smartphone& smartphone);
 
-    Smartphone getSmartphone(std::string model);
+    Smartphone getSmartphone(string model);
     Smartphone search(const Smartphone& searchSmartphone);
     Smartphone search(std::string model, int year, double price);
+};
+#endif // PR_7
+
+#ifdef PR_8
+#pragma once
+#include<string>
+#include<vector>
+#include"Smartphone.h"
+using namespace std;
+class Catalog {
+private:
+    vector<Smartphone> smartphones;
+public:
+    void addSmartphone(string model, double price, Manufacturer manufacturer,
+        Color color, float displaySize, int ram,
+        int storage, CPU cpu, OS os);
+    Smartphone getSmartphone(string model);
+    vector<Smartphone> search(const Smartphone& searchSmartphone);
 };
 #endif // PR_8
