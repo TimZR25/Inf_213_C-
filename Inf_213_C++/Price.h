@@ -1,10 +1,16 @@
 #pragma once
+#include <string>
+typedef enum class Valuta
+{
+	RUBLE, DOLLAR, TENGE
+}Valuta;
+
 class Price
 {
 private:
-	double _price, _dollars, _rubles;
+	double _price;
 public:
-	double convertToDollar();
-	double convertToRuble();
+	void setPrice(double price);
+	double getPrice(Valuta v) const;
 };
 

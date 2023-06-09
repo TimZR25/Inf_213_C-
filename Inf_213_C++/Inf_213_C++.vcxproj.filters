@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Исходные файлы\PR_7">
-      <UniqueIdentifier>{bc8e3319-99e1-4bf3-8590-d725e1765d7b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\PR_7">
-      <UniqueIdentifier>{2cd00ec0-1911-4790-8f0d-9d7726a21903}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Исходные файлы\PR_6">
       <UniqueIdentifier>{14f02912-1529-4dab-a0ef-ce95890e60f5}</UniqueIdentifier>
     </Filter>
@@ -31,13 +25,19 @@
     <Filter Include="Файлы заголовков\Laba_3">
       <UniqueIdentifier>{17882221-2ece-441e-ae31-87c19ca79736}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\PR_7/8">
+      <UniqueIdentifier>{2cd00ec0-1911-4790-8f0d-9d7726a21903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\PR_7/8">
+      <UniqueIdentifier>{bc8e3319-99e1-4bf3-8590-d725e1765d7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Catalog.h">
-      <Filter>Файлы заголовков\PR_7</Filter>
+      <Filter>Файлы заголовков\PR_7/8</Filter>
     </ClInclude>
     <ClInclude Include="Smartphone.h">
-      <Filter>Файлы заголовков\PR_7</Filter>
+      <Filter>Файлы заголовков\PR_7/8</Filter>
     </ClInclude>
     <ClInclude Include="Lamp.h">
       <Filter>Файлы заголовков\PR_6</Filter>
@@ -46,7 +46,7 @@
       <Filter>Файлы заголовков\Laba_3</Filter>
     </ClInclude>
     <ClInclude Include="Price.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\PR_7/8</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -54,10 +54,10 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Smartphone.cpp">
-      <Filter>Исходные файлы\PR_7</Filter>
+      <Filter>Исходные файлы\PR_7/8</Filter>
     </ClCompile>
     <ClCompile Include="Catalog.cpp">
-      <Filter>Исходные файлы\PR_7</Filter>
+      <Filter>Исходные файлы\PR_7/8</Filter>
     </ClCompile>
     <ClCompile Include="Lamp.cpp">
       <Filter>Исходные файлы\PR_6</Filter>
@@ -66,7 +66,7 @@
       <Filter>Исходные файлы\Laba_3</Filter>
     </ClCompile>
     <ClCompile Include="Price.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\PR_7/8</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
